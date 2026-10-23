@@ -1,0 +1,16 @@
+{
+  "name": "360° Tools by Avishkar Studio",
+  "short_name": "360° Tools",
+  "description": "Simple, powerful online tools for documents, development, design, SEO, networking, and everyday productivity.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8FAFC",
+  "theme_color": "#0F766E",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
