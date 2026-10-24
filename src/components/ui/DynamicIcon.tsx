@@ -6,7 +6,7 @@ import {
   ExternalLink, Lightbulb, Zap, Download, Copy, Upload,
   Clock, Star, Send, MessageSquare, HelpCircle, Shield,
   Smartphone, Monitor, Check, AlertCircle, Sparkles,
-  Layers, LayoutGrid,
+  Layers, LayoutGrid, Loader2,
 } from 'lucide-react';
 import type { LucideProps } from 'lucide-react';
 
@@ -39,5 +39,5 @@ export {
   ExternalLink, Lightbulb, Zap, Download, Copy, Upload,
   Clock, Star, Send, MessageSquare, HelpCircle, Shield,
   Smartphone, Monitor, Check, AlertCircle, Sparkles,
-  Layers, LayoutGrid,
+  Layers, LayoutGrid, Loader2,
 };

@@ -1,9 +1,9 @@
 import { useParams, Link } from 'react-router-dom';
 import Section from '../components/ui/Section';
 import Badge from '../components/ui/Badge';
-import DynamicIcon, { ArrowRight, Clock } from '../components/ui/DynamicIcon';
+import DynamicIcon, { Clock } from '../components/ui/DynamicIcon';
 import { getToolBySlug, getToolsByCategory } from '../data/tools';
-import { getCategoryBySlug, categories } from '../data/categories';
+import { categories } from '../data/categories';
 import ToolCard from '../components/tools/ToolCard';
 
 export default function ToolDetailPage() {

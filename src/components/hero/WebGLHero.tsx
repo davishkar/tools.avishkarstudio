@@ -1,11 +1,8 @@
 import { useRef, useMemo, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Float, Text, RoundedBox } from '@react-three/drei';
+import { Float, Text, RoundedBox, Line } from '@react-three/drei';
 import type * as THREE from 'three';
 import { categories } from '../../data/categories';
-
-// Category icon symbols for 3D text (simplified geometric representations)
-const categorySymbols = ['📄', '</>', '🌐', '🎨', '🔗', '🔧'];
 
 const categoryPositionsR3F = [
   [0, 1.8, 0],     // top
@@ -67,6 +64,7 @@ function CategoryNode({
   index,
   onHover,
   onUnhover,
+  onClick,
   isHovered,
 }: {
   position: readonly [number, number, number];
@@ -74,6 +72,7 @@ function CategoryNode({
   index: number;
   onHover: () => void;
   onUnhover: () => void;
+  onClick: () => void;
   isHovered: boolean;
 }) {
   const groupRef = useRef<THREE.Group>(null);
@@ -88,6 +87,10 @@ function CategoryNode({
       <group
         ref={groupRef}
         position={[position[0], position[1], position[2]]}
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick();
+        }}
         onPointerEnter={(e) => {
           e.stopPropagation();
           onHover();
@@ -137,21 +140,16 @@ function CategoryNode({
         </Text>
 
         {/* Connection line to center */}
-        <line>
-          <bufferGeometry>
-            <bufferAttribute
-              attach="attributes-position"
-              count={2}
-              array={new Float32Array([0, 0, 0, -position[0], -position[1], -position[2]])}
-              itemSize={3}
-            />
-          </bufferGeometry>
-          <lineBasicMaterial
-            color="#14B8A6"
-            transparent
-            opacity={isHovered ? 0.4 : 0.1}
-          />
-        </line>
+        <Line
+          points={[
+            [0, 0, 0],
+            [-position[0], -position[1], -position[2]],
+          ]}
+          color="#14B8A6"
+          lineWidth={1}
+          transparent
+          opacity={isHovered ? 0.4 : 0.1}
+        />
       </group>
     </Float>
   );
@@ -189,6 +187,7 @@ function Scene({ onCategoryClick }: { onCategoryClick: (slug: string) => void })
           index={idx}
           onHover={() => setHoveredIdx(idx)}
           onUnhover={() => setHoveredIdx(null)}
+          onClick={() => onCategoryClick(cat.slug)}
           isHovered={hoveredIdx === idx}
         />
       ))}

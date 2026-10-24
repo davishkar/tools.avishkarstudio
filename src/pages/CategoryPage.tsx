@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import Section, { SectionHeader } from '../components/ui/Section';
+import Section from '../components/ui/Section';
 import ToolCard from '../components/tools/ToolCard';
 import DynamicIcon, { ArrowRight } from '../components/ui/DynamicIcon';
 import { getCategoryBySlug, categories } from '../data/categories';
