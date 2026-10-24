@@ -1,0 +1,54 @@
+@import "tailwindcss";
+@import "./tokens.css";
+@import "./components.css";
+
+/* Base Body Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-500);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--brand-100);
+  color: var(--brand-900);
+}
+
+/* Code & Pre elements */
+pre, code, kbd {
+  font-family: var(--font-mono);
+}

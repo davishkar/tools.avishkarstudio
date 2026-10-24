@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 40" fill="none">
+  <!-- Brand Icon -->
+  <rect x="2" y="2" width="36" height="36" rx="10" fill="url(#logoGrad)" />
+  <text x="20" y="25" text-anchor="middle" fill="#FFFFFF" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="800" letter-spacing="-0.04em">360°</text>
+  
+  <!-- Brand Text -->
+  <text x="48" y="22" fill="#0F172A" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="800" letter-spacing="-0.02em">360° Tools</text>
+  <text x="48" y="32" fill="#64748B" font-family="Inter, system-ui, sans-serif" font-size="8" font-weight="600" letter-spacing="0.08em" text-transform="uppercase">BY AVISHKAR STUDIO</text>
+  
+  <defs>
+    <linearGradient id="logoGrad" x1="2" y1="2" x2="38" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#14B8A6" />
+      <stop offset="100%" stopColor="#0F766E" />
+    </linearGradient>
+  </defs>
+</svg>
