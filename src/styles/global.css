@@ -2,18 +2,19 @@
 @import "./tokens.css";
 @import "./components.css";
 
-/* Base Body Styles */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
   font-family: var(--font-sans);
-  scroll-behavior: smooth;
+  font-size: 16px;
+  color: var(--color-text);
+  background-color: var(--color-background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--text-primary);
-  background-color: var(--bg-primary);
 }
 
 body {
@@ -21,34 +22,59 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  line-height: 1.5;
+  font-size: var(--text-body);
 }
 
-/* Custom Scrollbars */
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+::selection {
+  background-color: var(--brand-100);
+  color: var(--brand-900);
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: var(--color-background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: #cbd5e1;
   border-radius: var(--radius-full);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--brand-500);
-}
-
-/* Selection */
-::selection {
-  background-color: var(--brand-100);
-  color: var(--brand-900);
-}
-
-/* Code & Pre elements */
-pre, code, kbd {
+pre,
+code,
+kbd {
   font-family: var(--font-mono);
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}
+
+input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='file']),
+select,
+textarea {
+  min-height: 44px;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
 }

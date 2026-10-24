@@ -5,21 +5,27 @@ import DynamicIcon from './DynamicIcon';
 import { searchTools } from '../data/tools';
 import { getCategoryById } from '../data/categories';
 
-export default function SearchBar({ onSearchChange, placeholder = 'Search tools by name, tag, or utility...' }) {
+export default function SearchBar({
+  onSearchChange,
+  placeholder = 'Search for a tool...',
+}) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef(null);
 
-  const handleSearch = useCallback((value) => {
-    setQuery(value);
-    if (onSearchChange) onSearchChange(value);
-    if (value.trim().length >= 2) {
-      setResults(searchTools(value));
-    } else {
-      setResults([]);
-    }
-  }, [onSearchChange]);
+  const handleSearch = useCallback(
+    (value) => {
+      setQuery(value);
+      if (onSearchChange) onSearchChange(value);
+      if (value.trim().length >= 2) {
+        setResults(searchTools(value));
+      } else {
+        setResults([]);
+      }
+    },
+    [onSearchChange]
+  );
 
   const clearSearch = () => {
     setQuery('');
@@ -30,7 +36,10 @@ export default function SearchBar({ onSearchChange, placeholder = 'Search tools 
 
   useEffect(() => {
     const handler = (e) => {
-      if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName || ''))) {
+      if (
+        (e.ctrlKey && e.key === 'k') ||
+        (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName || ''))
+      ) {
         e.preventDefault();
         inputRef.current?.focus();
       }
@@ -43,43 +52,42 @@ export default function SearchBar({ onSearchChange, placeholder = 'Search tools 
 
   return (
     <div className="relative w-full max-w-2xl mx-auto">
-      {/* Search Bar Input */}
       <div
-        className={`
-          relative flex items-center gap-3 px-5 py-3.5
-          bg-white rounded-2xl border transition-all duration-300
-          ${isFocused ? 'border-brand-400 shadow-lg ring-4 ring-brand-50' : 'border-border shadow-card hover:border-gray-300'}
-        `}
+        className={`relative flex items-center gap-3 px-4 min-h-12 bg-white rounded-[8px] border ${
+          isFocused ? 'border-brand-700 ring-2 ring-brand-50' : 'border-border'
+        }`}
       >
-        <Search size={20} className="text-text-muted shrink-0" />
+        <Search size={18} className="text-text-secondary shrink-0" aria-hidden="true" />
         <input
           ref={inputRef}
-          type="text"
+          type="search"
           value={query}
           onChange={(e) => handleSearch(e.target.value)}
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setTimeout(() => setIsFocused(false), 250)}
+          onBlur={() => setTimeout(() => setIsFocused(false), 200)}
           placeholder={placeholder}
-          className="flex-1 bg-transparent text-sm text-text-primary placeholder:text-text-muted outline-none"
-          aria-label="Search tools"
+          className="flex-1 min-h-11 bg-transparent text-[16px] text-text-primary placeholder:text-text-secondary outline-none"
+          aria-label="Search for a tool"
         />
         {query && (
           <button
             onClick={clearSearch}
-            className="p-1 text-text-muted hover:text-text-primary rounded-md hover:bg-gray-100 transition-colors cursor-pointer"
+            className="min-h-11 min-w-11 inline-flex items-center justify-center text-text-secondary hover:text-text-primary rounded-[8px]"
             aria-label="Clear search"
           >
             <X size={16} />
           </button>
         )}
-        <kbd className="hidden sm:inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-medium text-text-muted bg-gray-50 border border-border-light rounded-md">
+        <kbd className="hidden sm:inline-flex items-center px-2 min-h-7 text-[12px] text-text-secondary bg-bg-tertiary border border-border rounded-[8px]">
           Ctrl+K
         </kbd>
       </div>
 
-      {/* Results Dropdown */}
       {showDropdown && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl border border-border shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+        <div
+          className="absolute top-full left-0 right-0 mt-2 bg-white rounded-[14px] border border-border shadow-dropdown overflow-hidden z-50"
+          role="listbox"
+        >
           {results.length > 0 ? (
             <ul className="divide-y divide-border-light max-h-80 overflow-y-auto">
               {results.map((tool) => {
@@ -88,54 +96,45 @@ export default function SearchBar({ onSearchChange, placeholder = 'Search tools 
                   <li key={tool.id}>
                     <Link
                       to={`/tools/${tool.slug}`}
-                      className="flex items-center gap-3 px-4 py-3 hover:bg-brand-50/60 transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 min-h-11 hover:bg-brand-50"
                     >
-                      <div
-                        className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 shadow-2xs"
-                        style={{
-                          backgroundColor: category?.colorLight || '#F0FDFA',
-                        }}
-                      >
-                        <DynamicIcon
-                          name={tool.icon}
-                          size={18}
-                          style={{ color: category?.color || '#0F766E' }}
-                        />
+                      <div className="w-9 h-9 rounded-[8px] bg-brand-50 text-brand-700 flex items-center justify-center shrink-0">
+                        <DynamicIcon name={tool.icon} size={18} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
-                          <span className="text-sm font-semibold text-text-primary truncate">
+                          <span className="text-[15px] font-medium text-text-primary truncate">
                             {tool.name}
                           </span>
-                          <span
-                            className={`px-2 py-0.5 rounded-full text-[10px] font-semibold ${
-                              tool.status === 'available'
-                                ? 'bg-emerald-50 text-emerald-700'
-                                : 'bg-amber-50 text-amber-700'
-                            }`}
-                          >
-                            {tool.status === 'available' ? 'Available' : 'Coming Soon'}
+                          <span className="text-[12px] text-text-secondary">
+                            {tool.status === 'available' ? 'Available' : 'Coming soon'}
                           </span>
                         </div>
-                        <p className="text-xs text-text-secondary truncate mt-0.5">
+                        <p className="text-[13px] text-text-secondary truncate mt-0.5">
                           {tool.shortDescription}
                         </p>
                       </div>
+                      {category && (
+                        <span className="hidden sm:inline text-[12px] text-text-secondary shrink-0">
+                          {category.shortName}
+                        </span>
+                      )}
                     </Link>
                   </li>
                 );
               })}
             </ul>
           ) : (
-            <div className="p-8 text-center">
-              <p className="text-sm font-semibold text-text-primary mb-1">
-                No matching tools found for "{query}"
+            <div className="p-6 text-center">
+              <p className="text-[15px] font-medium text-text-primary mb-1">
+                No tools match “{query}”
               </p>
-              <p className="text-xs text-text-secondary">
-                Need a specific utility?{' '}
-                <Link to="/contact" className="text-brand-700 font-semibold hover:underline">
-                  Suggest it to our team
+              <p className="text-[14px] text-text-secondary">
+                Try another keyword, or{' '}
+                <Link to="/contact" className="text-brand-700 font-medium hover:underline">
+                  report a missing tool
                 </Link>
+                .
               </p>
             </div>
           )}
