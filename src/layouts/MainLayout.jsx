@@ -11,7 +11,7 @@ export default function MainLayout() {
   }, [pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-bg-primary text-text-primary">
+    <div className="min-h-screen flex flex-col bg-bg-primary text-text-primary transition-colors duration-200">
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>

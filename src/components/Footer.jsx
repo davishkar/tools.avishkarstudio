@@ -8,15 +8,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
           <div className="space-y-3">
             <Link to="/" className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-[8px] bg-brand-700 flex items-center justify-center text-white text-xs font-bold">
-                AT
+              <div className="w-9 h-9 rounded-[8px] bg-brand-700 flex items-center justify-center text-white text-xs font-bold shadow-xs">
+                360°
               </div>
               <span className="text-[15px] font-semibold text-text-primary">
-                AVISHKAR TOOLS
+                360° TOOLS
               </span>
             </Link>
             <p className="text-[14px] text-text-secondary leading-relaxed max-w-xs">
-              Simple tools. Fast results. Free online utilities for everyday tasks, processed in your browser when possible.
+              One Platform. Every Tool You Need. Free online utilities for everyday tasks, processed directly in your browser.
             </p>
           </div>
 
@@ -87,7 +87,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-6 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[13px] text-text-secondary">
-          <p>© {new Date().getFullYear()} AVISHKAR TOOLS by Avishkar Studio.</p>
+          <p>© {new Date().getFullYear()} 360° Tools by Avishkar Studio.</p>
           <p>Browser-side processing when practical.</p>
         </div>
       </div>

@@ -2,6 +2,8 @@
 @import "./tokens.css";
 @import "./components.css";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 *,
 *::before,
 *::after {
@@ -15,6 +17,7 @@ html {
   background-color: var(--color-background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 body {
@@ -24,6 +27,8 @@ body {
   flex-direction: column;
   line-height: 1.5;
   font-size: var(--text-body);
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
 
 #app {
@@ -42,6 +47,11 @@ body {
   color: var(--brand-900);
 }
 
+.dark ::selection {
+  background-color: rgba(20, 184, 166, 0.4);
+  color: #f8fafc;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -54,6 +64,14 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: var(--radius-full);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
 }
 
 pre,

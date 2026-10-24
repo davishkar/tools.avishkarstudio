@@ -64,12 +64,16 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
   padding: 20px;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
 }
 
 .tool-card:hover {
   border-color: #cbd5e1;
   box-shadow: var(--shadow-card-hover);
+}
+
+.dark .tool-card:hover {
+  border-color: #475569;
 }
 
 .tool-workspace {
@@ -105,6 +109,10 @@
   padding: 12px 16px;
 }
 
+.dark .alert-error {
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
 .alert-success {
   background: var(--success-bg);
   color: var(--color-success);
@@ -113,6 +121,152 @@
   padding: 12px 16px;
 }
 
+.dark .alert-success {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
 .site-header {
   height: var(--header-height);
+}
+
+/* Micro-animations */
+@keyframes float {
+  0%, 100% {
+    margin-top: 0px;
+  }
+  50% {
+    margin-top: -8px;
+  }
+}
+
+/* Hero Background & Patterns */
+.hero-bg {
+  background: radial-gradient(circle at 50% 0%, rgba(20, 184, 166, 0.12) 0%, rgba(248, 250, 252, 0) 70%),
+              linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.dark .hero-bg {
+  background: radial-gradient(circle at 50% 0%, rgba(20, 184, 166, 0.18) 0%, rgba(11, 15, 23, 0) 70%),
+              linear-gradient(180deg, #0b0f17 0%, #111827 100%);
+}
+
+.dot-pattern {
+  background-image: radial-gradient(rgba(15, 118, 110, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.dark .dot-pattern {
+  background-image: radial-gradient(rgba(45, 212, 191, 0.15) 1px, transparent 1px);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #0f766e 0%, #14b8a6 50%, #0d9488 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .text-gradient {
+  background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 50%, #5eead4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Global Dark Mode Overrides for Complete Coverage */
+.dark .bg-white {
+  background-color: var(--color-surface, #111827) !important;
+}
+
+.dark .bg-white\/90 {
+  background-color: rgba(17, 24, 39, 0.9) !important;
+  border-color: rgba(30, 41, 59, 0.8) !important;
+}
+
+.dark .bg-white\/80 {
+  background-color: rgba(17, 24, 39, 0.8) !important;
+  border-color: rgba(30, 41, 59, 0.7) !important;
+}
+
+.dark .bg-gray-50,
+.dark .bg-slate-50 {
+  background-color: #0b0f17 !important;
+}
+
+.dark .bg-gray-100,
+.dark .bg-slate-100 {
+  background-color: #1e293b !important;
+}
+
+.dark .bg-brand-50 {
+  background-color: rgba(15, 118, 110, 0.25) !important;
+}
+
+.dark .text-gray-900,
+.dark .text-slate-900,
+.dark .text-text-primary {
+  color: #f8fafc !important;
+}
+
+.dark .text-gray-700,
+.dark .text-slate-700,
+.dark .text-gray-600,
+.dark .text-slate-600,
+.dark .text-text-secondary {
+  color: #94a3b8 !important;
+}
+
+.dark .text-gray-500,
+.dark .text-slate-500,
+.dark .text-text-muted {
+  color: #64748b !important;
+}
+
+.dark .border-border,
+.dark .border-gray-200,
+.dark .border-slate-200,
+.dark .border-border-light {
+  border-color: #1e293b !important;
+}
+
+.dark .border-brand-100,
+.dark .border-brand-200 {
+  border-color: rgba(20, 184, 166, 0.3) !important;
+}
+
+.dark input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='color']):not([type='submit']):not([type='button']),
+.dark textarea,
+.dark select {
+  background-color: #0b0f17;
+  color: #f8fafc;
+  border-color: #1e293b;
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  background-color: #0b0f17;
+  border-color: var(--color-primary);
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #64748b;
+}
+
+.dark .dropzone {
+  background-color: #0b0f17;
+  border-color: #1e293b;
+}
+
+.dark .dropzone:hover,
+.dark .dropzone.active {
+  background-color: rgba(15, 118, 110, 0.2);
+  border-color: var(--color-primary);
+}
+
+/* Code editor / pre areas in dark mode */
+.dark pre {
+  background-color: #0b0f17;
+  color: #e2e8f0;
 }
